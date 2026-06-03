@@ -14,3 +14,16 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test
+
+  test-as-non-root-1001:
+    runs-on: ubuntu-24.04
+    container:
+      image: node:24.16.0-trixie-slim
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
