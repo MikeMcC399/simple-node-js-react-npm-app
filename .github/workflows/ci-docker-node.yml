@@ -1,0 +1,16 @@
+name: ci-docker-node
+on:
+  workflow_dispatch:
+
+jobs:
+  test-as-root:
+    runs-on: ubuntu-24.04
+    container:
+      image: node:24.16.0-trixie-slim
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
